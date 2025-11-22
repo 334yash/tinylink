@@ -1,0 +1,5 @@
+{
+  "name": "TinyLink",
+  "description": "A robust, client-side URL shortener with analytics, built with React, TypeScript, and Tailwind CSS. Simulates a full backend using LocalStorage.",
+  "requestFramePermissions": []
+}
