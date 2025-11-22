@@ -6,7 +6,7 @@ import { incrementClick } from '../../services/linkService';
 
 export default function RedirectPage() {
   const params = useParams();
-  const code = params.code as string;
+  const code = params?.code as string | undefined;
   const router = useRouter();
   const [error, setError] = useState(false);
 

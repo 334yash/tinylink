@@ -1,3 +1,7 @@
+// pages/Stats.tsx
+// This file should be DELETED if you're using app directory
+// The correct location is: app/stats/[code]/page.tsx
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -9,8 +13,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 
 export default function StatsPage() {
   const params = useParams();
-  // Add null check for params
-  const code = params?.code as string | undefined;
+  const code = params?.code as string | undefined; // Get code from route params
   
   const [link, setLink] = useState<LinkType | null>(null);
   const [loading, setLoading] = useState(true);
@@ -18,10 +21,7 @@ export default function StatsPage() {
 
   useEffect(() => {
     const load = async () => {
-      // Check if code exists before making API call
-      if (!code) {
-        setNotFound(true);
-        setLoading(false);
+      if (!code || typeof code !== 'string') {
         return;
       }
       
@@ -57,7 +57,6 @@ export default function StatsPage() {
     );
   }
 
-  // Mock data for the chart
   const mockChartData = [
     { name: 'Mon', clicks: Math.floor(link.clicks * 0.1) },
     { name: 'Tue', clicks: Math.floor(link.clicks * 0.2) },
@@ -111,7 +110,6 @@ export default function StatsPage() {
         </div>
       </div>
 
-      {/* Chart Section */}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
         <h3 className="text-lg font-bold text-slate-900 mb-6">Click Activity (Simulated)</h3>
         <div className="h-64 w-full">
