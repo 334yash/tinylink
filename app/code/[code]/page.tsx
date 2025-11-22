@@ -9,7 +9,8 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 
 export default function StatsPage() {
   const params = useParams();
-  const code = params.code as string;
+  // Add null check for params
+  const code = params?.code as string | undefined;
   
   const [link, setLink] = useState<LinkType | null>(null);
   const [loading, setLoading] = useState(true);
@@ -17,7 +18,13 @@ export default function StatsPage() {
 
   useEffect(() => {
     const load = async () => {
-      if (!code) return;
+      // Check if code exists before making API call
+      if (!code) {
+        setNotFound(true);
+        setLoading(false);
+        return;
+      }
+      
       try {
         const data = await fetchLinkByCode(code);
         if (data) {
